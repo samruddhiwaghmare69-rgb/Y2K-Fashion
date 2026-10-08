@@ -1,0 +1,6 @@
+{
+  "name": "Millennium REVIVAL: Bring Back Y2K Fashion",
+  "description": "An editorial retrospective and style guide documenting the resurrection of Y2K fashion — featuring 10 deep-dive articles, styling archives, and lightweight media under 100KB.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
