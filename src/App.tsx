@@ -69,11 +69,24 @@ export default function App() {
     }
   });
 
-  // Handle clean HTML5 pathname routing without hash symbols
+  // Handle clean HTML5 pathname routing without hash symbols and remove unwanted tokens
   useEffect(() => {
     const handleLocationChange = () => {
+      // Actively remove '5o91' if it appears in pathname, query string, or hash
+      if (
+        window.location.pathname.includes('5o91') ||
+        window.location.search.includes('5o91') ||
+        window.location.hash.includes('5o91')
+      ) {
+        const sanitizedPath =
+          window.location.pathname.replace(/\/?5o91\/?/gi, '/').replace(/\/+/g, '/') || '/';
+        window.history.replaceState({}, '', sanitizedPath);
+      }
+
       // Extract clean pathname (e.g. /velour-tracksuits -> velour-tracksuits)
-      const path = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+      const rawPath = window.location.pathname.replace(/\/?5o91\/?/gi, '/');
+      const path = rawPath.replace(/^\/+/, '').replace(/\/+$/, '');
+
       if (path) {
         const found = ARTICLES.find((a) => a.slug === path || a.id === path);
         if (found) {
@@ -85,7 +98,7 @@ export default function App() {
 
       // If user had a hash previously, cleanly replace it with the clean pathname URL
       if (window.location.hash) {
-        const hash = window.location.hash.replace(/^#\/?/, '');
+        const hash = window.location.hash.replace(/^#\/?/, '').replace(/5o91/gi, '');
         const found = ARTICLES.find((a) => a.slug === hash || a.id === hash);
         if (found) {
           window.history.replaceState({}, '', `/${found.slug}`);

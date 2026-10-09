@@ -1,4 +1,6 @@
 {
+  "name": "bring-back-y2k-fashion",
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/(.*)",

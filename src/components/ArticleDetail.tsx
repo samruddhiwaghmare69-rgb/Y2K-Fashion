@@ -107,7 +107,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
   const handleShare = () => {
-    const cleanUrl = `${window.location.origin}/${article.slug}`;
+    let cleanOrigin = window.location.origin;
+    if (cleanOrigin.includes('5o91')) {
+      cleanOrigin = cleanOrigin.replace(/[-.]?5o91[a-z0-9-]*/gi, '');
+    }
+    const cleanUrl = `${cleanOrigin}/${article.slug}`;
     navigator.clipboard.writeText(cleanUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
