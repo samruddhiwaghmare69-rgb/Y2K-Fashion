@@ -119,16 +119,20 @@ export const WeightAuditModal: React.FC<WeightAuditModalProps> = ({
                       </span>
                     </div>
 
-                    <button
-                      onClick={() => {
-                        onSelectArticle(article);
-                        onClose();
+                    <a
+                      href={`/${article.slug}`}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey) {
+                          e.preventDefault();
+                          onSelectArticle(article);
+                          onClose();
+                        }
                       }}
-                      className="px-2.5 py-1.5 bg-stone-900 hover:bg-fuchsia-700 text-white rounded text-[11px] flex items-center gap-1 cursor-pointer transition-colors"
+                      className="px-2.5 py-1.5 bg-stone-900 hover:bg-fuchsia-700 text-white rounded text-[11px] flex items-center gap-1 cursor-pointer transition-colors text-inherit no-underline"
                     >
                       <span>View</span>
                       <ArrowUpRight className="w-3 h-3" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               );

@@ -24,22 +24,22 @@ const QUESTIONS: Question[] = [
       {
         label: "Max Martin Pop Royalty",
         description: "Britney, Christina & *NSYNC blasting through hot pink wired headphones.",
-        targetArticleId: "velour-tracksuit-renaissance",
+        targetArticleId: "velour-tracksuits",
       },
       {
         label: "Suburban Skate & Pop-Punk",
         description: "Avril Lavigne, Blink-182 & Sum 41 echoing across the local skate park.",
-        targetArticleId: "trucker-hats-von-dutch-subversion",
+        targetArticleId: "trucker-hats",
       },
       {
         label: "Liquid Gold R&B Perfection",
         description: "Aaliyah, Destiny's Child & TLC harmonizing with deep sub-bass grooves.",
-        targetArticleId: "cargo-pants-tactical-rnb-streetwear",
+        targetArticleId: "cargo-pants",
       },
       {
         label: "Techno-Club Millennium Countdown",
         description: "Eurodance, Daft Punk & chemical brothers preparing for the Y2K digital dawn.",
-        targetArticleId: "cyber-metallic-futurism",
+        targetArticleId: "cyber-metallics",
       },
     ],
   },
@@ -49,22 +49,22 @@ const QUESTIONS: Question[] = [
       {
         label: "Low-Slung Flare Denim & Baby Tee",
         description: "Whiskered wash, grommet belt, and exposed midriff framing a butterfly chain.",
-        targetArticleId: "low-rise-denim-salvation",
+        targetArticleId: "low-rise-denim",
       },
       {
         label: "Pleated Tartan Mini & Stompers",
         description: "Razor-short pleated skirt with knee-high platform combat boots.",
-        targetArticleId: "pleated-micro-minis-schoolgirl-subversion",
+        targetArticleId: "pleated-micro-minis",
       },
       {
         label: "Plush Monochromatic Velour",
         description: "Bubblegum pink zip-up hoodie and matching flare pants with rhinestone flair.",
-        targetArticleId: "velour-tracksuit-renaissance",
+        targetArticleId: "velour-tracksuits",
       },
       {
         label: "Baggy Parachute Cargos & Bandeau",
         description: "Multi-pocket nylon volume contrasted against a minimal tight tube top.",
-        targetArticleId: "cargo-pants-tactical-rnb-streetwear",
+        targetArticleId: "cargo-pants",
       },
     ],
   },
@@ -74,22 +74,22 @@ const QUESTIONS: Question[] = [
       {
         label: "Frameless Tinted Shield Sunglasses",
         description: "Oversized champagne gradient lenses with pavé rhinestone temples.",
-        targetArticleId: "shield-shades-frameless-optics",
+        targetArticleId: "shield-sunglasses",
       },
       {
         label: "Pastel Translucent Butterfly Hair Clips",
         description: "Dozens of tiny spring-loaded acrylic wings fluttering through crimped tendrils.",
-        targetArticleId: "butterfly-clips-iridescent-whimsy",
+        targetArticleId: "butterfly-clips",
       },
       {
         label: "Sky-Blue Patent Baguette Bag",
         description: "Slim rectangular purse tucked snug under the shoulder next to a flip phone.",
-        targetArticleId: "baguette-bags-mini-shoulder-pouches",
+        targetArticleId: "baguette-bags",
       },
       {
         label: "Thick Foam Platform Thong Sandals",
         description: "Sculptural 3-inch black EVA slides that make a satisfying thud on asphalt.",
-        targetArticleId: "platform-thongs-chunky-mules-footwear",
+        targetArticleId: "platform-sandals",
       },
     ],
   },
@@ -114,7 +114,7 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
       setCurrentStep(currentStep + 1);
     } else {
       // Tally or select matching article
-      const chosenId = updated[updated.length - 1] || 'velour-tracksuit-renaissance';
+      const chosenId = updated[updated.length - 1] || 'velour-tracksuits';
       const matched = ARTICLES.find((a) => a.id === chosenId) || ARTICLES[0];
       setResultArticle(matched);
     }
@@ -208,16 +208,20 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={() => {
-                  onSelectArticle(resultArticle);
-                  onClose();
+              <a
+                href={`/${resultArticle.slug}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey) {
+                    e.preventDefault();
+                    onSelectArticle(resultArticle);
+                    onClose();
+                  }
                 }}
-                className="w-full sm:w-auto px-6 py-2.5 bg-stone-950 hover:bg-fuchsia-700 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 bg-stone-950 hover:bg-fuchsia-700 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors text-inherit no-underline"
               >
                 <span>Read Full Chronicle</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </a>
 
               <button
                 onClick={handleReset}

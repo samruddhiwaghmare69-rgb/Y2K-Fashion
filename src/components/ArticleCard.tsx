@@ -29,9 +29,15 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   const formattedIndex = String(index + 1).padStart(2, '0');
 
   return (
-    <article
-      onClick={() => onSelect(article)}
-      className="group flex flex-col bg-white border border-stone-200/90 hover:border-stone-400/90 rounded-none transition-all duration-200 cursor-pointer overflow-hidden h-full shadow-xs hover:shadow-md"
+    <a
+      href={`/${article.slug}`}
+      onClick={(e) => {
+        if (!e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          onSelect(article);
+        }
+      }}
+      className="group flex flex-col bg-white border border-stone-200/90 hover:border-stone-400/90 rounded-none transition-all duration-200 cursor-pointer overflow-hidden h-full shadow-xs hover:shadow-md text-inherit no-underline"
     >
       {/* Visual Media Container */}
       <div className="relative aspect-4/3 w-full bg-stone-100 overflow-hidden">
@@ -135,6 +141,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
         </div>
       </div>
-    </article>
+    </a>
   );
 };

@@ -107,7 +107,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
+    const cleanUrl = `${window.location.origin}/${article.slug}`;
+    navigator.clipboard.writeText(cleanUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
@@ -144,13 +145,19 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       {/* Reader Navigation Subheader */}
       <div className="sticky top-18 z-30 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/90 py-2.5 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto flex items-center justify-between text-xs">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-1.5 text-stone-600 hover:text-stone-950 font-medium transition-colors cursor-pointer py-1"
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey) {
+                e.preventDefault();
+                onBack();
+              }
+            }}
+            className="flex items-center gap-1.5 text-stone-600 hover:text-stone-950 font-medium transition-colors cursor-pointer py-1 text-inherit no-underline"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Issue #01</span>
-          </button>
+          </a>
 
           <div className="font-mono text-stone-500 hidden sm:block">
             CHRONICLE <span className="text-stone-900 font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> OF 10
@@ -547,9 +554,15 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
         {/* Previous / Next Article Navigation Bar */}
         <div className="mt-16 pt-8 border-t border-stone-300 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prevArticle ? (
-            <button
-              onClick={() => onSelectArticle(prevArticle)}
-              className="p-4 text-left bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer"
+            <a
+              href={`/${prevArticle.slug}`}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey) {
+                  e.preventDefault();
+                  onSelectArticle(prevArticle);
+                }
+              }}
+              className="p-4 text-left bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer text-inherit no-underline"
             >
               <div className="flex items-center gap-1 text-xs text-stone-500 font-mono mb-1">
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -558,13 +571,19 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               <div className="font-display font-bold text-sm text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-1">
                 {prevArticle.title}
               </div>
-            </button>
+            </a>
           ) : <div />}
 
           {nextArticle ? (
-            <button
-              onClick={() => onSelectArticle(nextArticle)}
-              className="p-4 text-right bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer"
+            <a
+              href={`/${nextArticle.slug}`}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey) {
+                  e.preventDefault();
+                  onSelectArticle(nextArticle);
+                }
+              }}
+              className="p-4 text-right bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer text-inherit no-underline"
             >
               <div className="flex items-center justify-end gap-1 text-xs text-stone-500 font-mono mb-1">
                 <span>NEXT CHRONICLE</span>
@@ -573,7 +592,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               <div className="font-display font-bold text-sm text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-1">
                 {nextArticle.title}
               </div>
-            </button>
+            </a>
           ) : <div />}
         </div>
       </div>

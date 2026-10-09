@@ -35,8 +35,8 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
-    id: "velour-tracksuit-renaissance",
-    slug: "velour-tracksuit-renaissance",
+    id: "velour-tracksuits",
+    slug: "velour-tracksuits",
     title: "The Velour Renaissance: Juicy Tracksuits & The High-Low Velvet Revolution",
     subtitle: "How rhinestone-crusted plush loungewear transitioned from Beverly Hills paparazzi bait to contemporary runway canon.",
     excerpt: "Before athleisure was embraced by haute couture, Pamela Skaist-Levy and Gela Nash-Taylor engineered a candy-colored plush uniform that defined Hollywood in 2001. Today's revival proves comfort and unapologetic decadence were never mutually exclusive.",
@@ -101,8 +101,8 @@ export const ARTICLES: Article[] = [
     likesCount: 342,
   },
   {
-    id: "low-rise-denim-salvation",
-    slug: "low-rise-denim-salvation",
+    id: "low-rise-denim",
+    slug: "low-rise-denim",
     title: "Low-Rise Salvation: The Controversial Hemline That Defined a Millennium",
     subtitle: "Examining Frankie B, exposed hip bones, and how contemporary designers rescued the 3-inch zipper from its toxic past.",
     excerpt: "No single garment sparked as much cultural hysteria, parental outrage, and magazine ink as the sub-four-inch low-rise jean. As the silhouette re-emerges across TikTok and high fashion runways, the industry is rewriting the narrative around body autonomy and tailored ease.",
@@ -167,8 +167,8 @@ export const ARTICLES: Article[] = [
     likesCount: 289,
   },
   {
-    id: "cyber-metallic-futurism",
-    slug: "cyber-metallic-futurism",
+    id: "cyber-metallics",
+    slug: "cyber-metallics",
     title: "Cyber-Metallic Futurism: Silver Puffer Jackets & Space-Age Chromatics",
     subtitle: "When the countdown to the millennium filled our closets with liquid mercury, NASA foils, and techno-optimism.",
     excerpt: "At the dawn of the year 2000, society stood mesmerized by the digital frontier. Fashion responded with reflective foils, holographic textiles, and mirror-finish outerwear. As generative cyberspace grips culture once more, the metallic silver palette is taking over the city.",
@@ -233,8 +233,8 @@ export const ARTICLES: Article[] = [
     likesCount: 415,
   },
   {
-    id: "butterfly-clips-iridescent-whimsy",
-    slug: "butterfly-clips-iridescent-whimsy",
+    id: "butterfly-clips",
+    slug: "butterfly-clips",
     title: "The Butterfly Effect: Winged Hair Clips, Mesh Tops & Iridescent Whimsy",
     subtitle: "How miniature plastic fauna became the universal mascot of early 2000s playful femininity.",
     excerpt: "No styling session between 1998 and 2003 was complete without a dozen pastel butterfly clips clutching tendrils of crimped hair. We trace how this joyful, whimsical accessory migrated from Claire's Accessories to haute-couture runways.",
@@ -299,8 +299,8 @@ export const ARTICLES: Article[] = [
     likesCount: 521,
   },
   {
-    id: "trucker-hats-von-dutch-subversion",
-    slug: "trucker-hats-von-dutch-subversion",
+    id: "trucker-hats",
+    slug: "trucker-hats",
     title: "Trucker Hats & Von Dutch: The Subversive Ascent of Trash-Chic Couture",
     subtitle: "When foam fronts and mesh backs conquered MTV, skateboarding parks, and A-list red carpets.",
     excerpt: "Between 2002 and 2005, a five-dollar piece of midwestern agricultural promo gear became the most coveted status symbol on Earth. We unpack the bizarre, hilarious, and brilliant reign of the mesh-back trucker hat.",
@@ -365,8 +365,8 @@ export const ARTICLES: Article[] = [
     likesCount: 378,
   },
   {
-    id: "pleated-micro-minis-schoolgirl-subversion",
-    slug: "pleated-micro-minis-schoolgirl-subversion",
+    id: "pleated-micro-minis",
+    slug: "pleated-micro-minis",
     title: "Micro-Minis & Pleated Plaid: The Schoolgirl Uniform Subversion",
     subtitle: "From Britney's debut video to Miu Miu's runway shears: the political history of the razor-short hemline.",
     excerpt: "Pleated tartan skirts, neckties worn over tank tops, and knee-high combat stompers: how early 2000s pop and rock icons hijacked prep school uniforms to forge an enduring language of female defiance.",
@@ -431,8 +431,8 @@ export const ARTICLES: Article[] = [
     likesCount: 467,
   },
   {
-    id: "shield-shades-frameless-optics",
-    slug: "shield-shades-frameless-optics",
+    id: "shield-sunglasses",
+    slug: "shield-sunglasses",
     title: "Shield Shades & Bug-Eye Frames: The Optical Armor of 2000s Pop Icons",
     subtitle: "From Christian Dior Glossy shields to gradient pastel lenses: how sunglasses became face-filling shields.",
     excerpt: "Rimless, oversized, and tinted in rose, champagne, and canary yellow: 2000s sunglasses weren't designed to hide behind; they were designed to announce you had arrived under intense studio flashbulbs.",
@@ -497,8 +497,8 @@ export const ARTICLES: Article[] = [
     likesCount: 312,
   },
   {
-    id: "cargo-pants-tactical-rnb-streetwear",
-    slug: "cargo-pants-tactical-rnb-streetwear",
+    id: "cargo-pants",
+    slug: "cargo-pants",
     title: "Cargo Pants & Parachute Pants: The Tactical Pop Transition",
     subtitle: "How Aaliyah, TLC, and Destiny's Child turned military pockets into the greatest streetwear uniform ever made.",
     excerpt: "Before utility pants were adopted by outdoor gorpcore enthusiasts, they were championed by the queens of 90s and 2000s R&B. We examine how oversized parachute nylon and multi-pocket cargos transformed women's streetwear forever.",
@@ -563,8 +563,8 @@ export const ARTICLES: Article[] = [
     likesCount: 395,
   },
   {
-    id: "baguette-bags-mini-shoulder-pouches",
-    slug: "baguette-bags-mini-shoulder-pouches",
+    id: "baguette-bags",
+    slug: "baguette-bags",
     title: "Baguette Bags & Mini Pouches: The It-Bag Golden Age",
     subtitle: "How Silvia Venturini Fendi and Carrie Bradshaw transformed the handbag into an ergonomic extension of the arm.",
     excerpt: "Before the turn of the century, luxury handbags were bulky, structured, and heavy. Then came a slim, compact pouch designed to tuck neatly under the arm like a loaf of French bread—and it revolutionized fashion forever.",
@@ -629,8 +629,8 @@ export const ARTICLES: Article[] = [
     likesCount: 540,
   },
   {
-    id: "platform-thongs-chunky-mules-footwear",
-    slug: "platform-thongs-chunky-mules-footwear",
+    id: "platform-sandals",
+    slug: "platform-sandals",
     title: "Platform Thongs & Chunky Mules: The Architectural Shoes of the New Era",
     subtitle: "How Steve Madden's stretchy black slides and 4-inch foam slabs gave a generation their summer stride.",
     excerpt: "Few sounds are as emblematic of summer 2001 as the rhythmic 'thwack' of a chunky foam platform slide hitting pavement. We celebrate the sculptural footwear that elevated a generation without sacrificing an ounce of cool.",

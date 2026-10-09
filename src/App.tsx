@@ -69,35 +69,49 @@ export default function App() {
     }
   });
 
-  // Handle URL hash routing
+  // Handle clean HTML5 pathname routing without hash symbols
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const found = ARTICLES.find((a) => a.slug === hash || a.id === hash);
+    const handleLocationChange = () => {
+      // Extract clean pathname (e.g. /velour-tracksuits -> velour-tracksuits)
+      const path = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+      if (path) {
+        const found = ARTICLES.find((a) => a.slug === path || a.id === path);
         if (found) {
           setSelectedArticle(found);
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
       }
+
+      // If user had a hash previously, cleanly replace it with the clean pathname URL
+      if (window.location.hash) {
+        const hash = window.location.hash.replace(/^#\/?/, '');
+        const found = ARTICLES.find((a) => a.slug === hash || a.id === hash);
+        if (found) {
+          window.history.replaceState({}, '', `/${found.slug}`);
+          setSelectedArticle(found);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+      }
+
       setSelectedArticle(null);
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
   const handleSelectArticle = (article: Article) => {
     setSelectedArticle(article);
-    window.location.hash = article.slug;
+    window.history.pushState({}, '', `/${article.slug}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToCatalog = () => {
     setSelectedArticle(null);
-    window.location.hash = '';
+    window.history.pushState({}, '', '/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -228,9 +242,15 @@ export default function App() {
                   {/* 3-Tier Visual Salience: Tier 1 Lead + Tier 2 Secondary Features */}
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Lead Story Left/Center (7 cols) */}
-                    <div
-                      onClick={() => handleSelectArticle(leadStory)}
-                      className="lg:col-span-7 group cursor-pointer"
+                    <a
+                      href={`/${leadStory.slug}`}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey) {
+                          e.preventDefault();
+                          handleSelectArticle(leadStory);
+                        }
+                      }}
+                      className="lg:col-span-7 group cursor-pointer text-inherit no-underline block"
                     >
                       <div className="relative aspect-4/3 w-full bg-stone-100 border border-stone-200 overflow-hidden mb-5">
                         <img
@@ -265,7 +285,7 @@ export default function App() {
                         <span>Read Lead Chronicle</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </div>
-                    </div>
+                    </a>
 
                     {/* Secondary Stories Right (5 cols) */}
                     <div className="lg:col-span-5 space-y-6 pt-2 lg:pt-0 lg:pl-6 lg:border-l lg:border-stone-200">
@@ -274,10 +294,16 @@ export default function App() {
                       </div>
 
                       {secondaryStories.map((secArticle, sIdx) => (
-                        <div
+                        <a
                           key={secArticle.id}
-                          onClick={() => handleSelectArticle(secArticle)}
-                          className="group cursor-pointer pb-6 border-b border-stone-100 last:border-b-0 last:pb-0"
+                          href={`/${secArticle.slug}`}
+                          onClick={(e) => {
+                            if (!e.metaKey && !e.ctrlKey) {
+                              e.preventDefault();
+                              handleSelectArticle(secArticle);
+                            }
+                          }}
+                          className="group cursor-pointer pb-6 border-b border-stone-100 last:border-b-0 last:pb-0 text-inherit no-underline block"
                         >
                           <div className="relative aspect-16/10 w-full bg-stone-100 border border-stone-200 overflow-hidden mb-3">
                             <img
@@ -306,7 +332,7 @@ export default function App() {
                           <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
                             {secArticle.excerpt}
                           </p>
-                        </div>
+                        </a>
                       ))}
                     </div>
                   </div>

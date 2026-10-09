@@ -54,17 +54,21 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Top Bar Contract: 3 Zones */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
         {/* Zone 1: Single text element wordmark */}
-        <button
-          onClick={() => {
-            onSelectTab('all');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        <a
+          href="/"
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey) {
+              e.preventDefault();
+              onSelectTab('all');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           }}
-          className="text-left group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 rounded"
+          className="text-left group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 rounded text-inherit no-underline"
         >
           <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-950 group-hover:text-fuchsia-700 transition-colors">
             MILLENNIUM REVIVAL
           </span>
-        </button>
+        </a>
 
         {/* Zone 2: 4-6 clean text navigation links with subtle hover underlines */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-600">
