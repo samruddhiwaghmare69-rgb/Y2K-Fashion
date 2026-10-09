@@ -25,7 +25,9 @@ export interface Article {
   historicalPivots: { year: string; event: string }[];
   styleGuideTips: string[];
   sections: {
-    heading: string;
+    questionHeading: string;
+    chapterTitle: string;
+    heading?: string;
     paragraphs: string[];
     pullQuote?: string;
     curatorNote?: string;
@@ -76,6 +78,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "Why Did Juicy Velour Tracksuits Become the Ultimate Symbol of 2000s Comfort Luxury?",
+        chapterTitle: "Chapter 1: The Alchemy of Accessible Opulence",
         heading: "1. The Alchemy of Accessible Opulence",
         paragraphs: [
           "In 1997, Los Angeles designers Pamela Skaist-Levy and Gela Nash-Taylor launched Juicy Couture with a modest run of customized maternity pants before arriving at an epiphany: women wanted leisure wear that made them look simultaneously wealthy, relaxed, and magnetically photogenic.",
@@ -84,6 +88,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "The velour tracksuit was never about quiet luxury; it was loud comfort, an ironical bourgeois uniform that refused to apologize for being cozy.",
       },
       {
+        questionHeading: "How Did Paparazzi Tabloid Culture Turn Loungewear into High Fashion?",
+        chapterTitle: "Chapter 2: The Paparazzi Economy as Runway",
         heading: "2. The Paparazzi Economy as Runway",
         paragraphs: [
           "Unlike Parisian houses reliant on seasonal salon showcases, early-2000s American fashion derived its cultural legitimacy from paparazzi snapshots printed in glossy tabloids like US Weekly and InTouch. Paris Hilton clutching a Motorola Razr in hot pink velour did more to move worldwide retail units than any Fashion Week runway.",
@@ -92,6 +98,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Archival Note: Over 2.8 million Juicy tracksuits were sold between 2002 and 2006, creating the first multi-million dollar leisurewear phenomenon before the term 'athleisure' was coined.",
       },
       {
+        questionHeading: "How Do You Style Y2K Velour Tracksuits in 2026 Without Looking Dated?",
+        chapterTitle: "Chapter 3: The 2026 Resurgence: Nostalgia Meets Modern Tailoring",
         heading: "3. The 2026 Resurgence: Nostalgia Meets Subversion",
         paragraphs: [
           "Why did Gen-Z and contemporary fashion houses revive the velour set? Modern fashion fatigue with sterile minimalist athleisure left a hunger for tactile fun, glitter, and camp optimism. Vintage resellers on secondary markets report authentic deadstock pieces commanding prices rivaling tailored blazers.",
@@ -143,6 +151,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "Why Was Low-Rise Denim the Most Radical Silhouette Shift of the Millennium?",
+        chapterTitle: "Chapter 1: The Anatomy of an Extreme Rise",
         heading: "1. The Anatomy of an Extreme Rise",
         paragraphs: [
           "The origins of low-rise denim are deeply architectural. In the late 1990s, designer Daniella Clarke found herself frustrated by high-waisted 90s mom jeans that compressed the midsection and flattened natural curves. She took shears to her Levi's, dropping the rise until the waistband grazed her hips.",
@@ -151,6 +161,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Low-rise was not just a cut; it was a spatial revolt against the restrictive button-downs and waist-cinchers of the corporate nineties.",
       },
       {
+        questionHeading: "How Did Pop Music and MTV Turn the Exposed Navel into a Cultural Battleground?",
+        chapterTitle: "Chapter 2: The Cultural Battleground of the Navel",
         heading: "2. The Cultural Battleground of the Navel",
         paragraphs: [
           "Between 2000 and 2004, the exposed midriff was treated with near-scandalous tabloid obsession. School boards enacted dress codes banning visible hipbones, while music television turned low-rise denim into the default canvas for pop-star choreography.",
@@ -159,6 +171,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Fabrication Metric: Early 2000s low-rise jeans contained only 1–2% elastane, demanding rigid pelvic fit. 2026 revisions employ multi-directional dynamic stretch denim.",
       },
       {
+        questionHeading: "How Are Contemporary Designers Reclaiming Low-Rise Jeans for Every Body Type?",
+        chapterTitle: "Chapter 3: The Modern Reclamation: Loose, Relaxed & Inclusive",
         heading: "3. The Modern Reclamation: Loose, Relaxed & Inclusive",
         paragraphs: [
           "Today's revival rejects the restrictive tyranny of 2002. Instead of paint-on super-skinny cuts, the 2026 low-rise pant is slouchy, relaxed, and worn by people of all body sizes and expressions. By combining low waistbands with wide legs, puddle hems, and soft washed selvedge cotton, the garment has been reborn as an emblem of effortless downtown swagger.",
@@ -210,6 +224,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "What Drove the Space-Age Techno-Optimism and Liquid Silver Trend in 1999?",
+        chapterTitle: "Chapter 1: The Techno-Optimism of 1999",
         heading: "1. The Techno-Optimism of 1999",
         paragraphs: [
           "Before algorithms and social doomscrolling dominated daily life, the dawn of the internet was viewed with almost universal euphoria. The digital world promised borderless connectivity, teleportation through optic fiber, and cybernetic elegance.",
@@ -218,6 +234,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Silver was the color of the future because nobody believed the future would ever be dull or brown.",
       },
       {
+        questionHeading: "How Did The Matrix and Futuristic R&B Videos Define Space Station Chic?",
+        chapterTitle: "Chapter 2: The Matrix & The Pop Station Convergence",
         heading: "2. The Matrix & The Pop Station Convergence",
         paragraphs: [
           "Two cultural poles anchored late-90s space-age style: the dystopian leather-clad cool of The Wachowskis' The Matrix (1999) and the vibrant bubblegum techno-glam of Hype Williams music videos for Missy Elliott, TLC, and Busta Rhymes.",
@@ -226,6 +244,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Material Innovation: 1999 reflective fabrics used glass micro-bead coatings. Contemporary 2026 iterations utilize recycled plant-derived biopolymers with mirror specular reflection.",
       },
       {
+        questionHeading: "Why Is Cyber-Metallic Silver Outerwear Taking Over Modern Urban Streetwear?",
+        chapterTitle: "Chapter 3: Cyber Outerwear in the Modern Digital Era",
         heading: "3. Streetwear in the Digital Age",
         paragraphs: [
           "In 2026, the silver puffer jacket has emerged as the definitive statement coat for urban winters. In an era saturated with virtual worlds and augmented realities, wearing high-shine chrome is a playful physical manifestation of the digital aura.",
@@ -277,6 +297,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "Why Did Translucent Butterfly Clips Become the Universal Mascot of Y2K Fashion?",
+        chapterTitle: "Chapter 1: The Mascot of the Millennium",
         heading: "1. The Mascot of the Millennium",
         paragraphs: [
           "The butterfly was to late-1990s and early-2000s fashion what the lightning bolt was to 1970s glam rock: an omnipresent totem of transformation, freedom, and radiant optimism.",
@@ -285,6 +307,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Butterfly clips were the democratization of jewelry. For three dollars, any teenager could create an elaborate crown of glistening gems.",
       },
       {
+        questionHeading: "How Did Playful 2000s Hair Architecture Celebrate Unapologetic Ornamentation?",
+        chapterTitle: "Chapter 2: The Tactile Joy of Hair Architecture",
         heading: "2. The Tactile Joy of Hair Architecture",
         paragraphs: [
           "Y2K hairstyling was never about quiet effortless naturalism; it was an architectural performance. It demanded zig-zag parts made with rat-tail combs, crimped accents, twisty buns with spiky chopsticks, and face-framing tendrils held fast by spring-loaded plastic butterflies.",
@@ -293,6 +317,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Color Theory: Original butterfly clips were cast in CMYK translucent tints with micro-fine silver dust suspended in polystyrene resin.",
       },
       {
+        questionHeading: "How Are Modern Runways Reinterpreting Butterfly Hair Accessories Today?",
+        chapterTitle: "Chapter 3: Reimagining Whimsy in Contemporary Styling",
         heading: "3. Reimagining Whimsy in the Present",
         paragraphs: [
           "In today's beauty ecosystem, the butterfly clip has been reclaimed by high-fashion hair artists. No longer relegated to teen nostalgia, metallic gold, tortoiseshell, and iridescent glass interpretations are walking international runways.",
@@ -344,6 +370,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "How Did Promotional Agricultural Mesh Caps Become High-End Hollywood Couture?",
+        chapterTitle: "Chapter 1: The Unlikely Aristocracy of Foam & Mesh",
         heading: "1. The Unlikely Aristocracy of Foam & Mesh",
         paragraphs: [
           "In the 1970s, feed stores and rural tractor supply companies in the American Midwest handed out cheap mesh baseball caps to truck drivers and farmers as free promotional merchandise. Thirty years later, French designer Christian Audigier and the founders of Von Dutch turned that utilitarian headwear into a $125 luxury item.",
@@ -352,6 +380,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "The trucker hat was pure camp: it took something designed to cost sixty cents to manufacture and made it the crown of Beverly Hills.",
       },
       {
+        questionHeading: "What Role Did MTV's Punk'd and Ashton Kutcher Play in the Trucker Hat Craze?",
+        chapterTitle: "Chapter 2: The MTV Celebrity Engine & Skate Subculture",
         heading: "2. The MTV Celebrity Engine",
         paragraphs: [
           "No television show did more to canonize the trucker cap than MTV's Punk'd. Ashton Kutcher's weekly uniform—consisting of a vintage Von Dutch or custom graphic trucker hat, a layered thermal shirt, and flared jeans—became the de facto blueprint for masculine millennial coolness.",
@@ -360,6 +390,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Market Valuation: At its peak in 2003, Von Dutch was generating over $33 million annually primarily through trucker caps and patch t-shirts.",
       },
       {
+        questionHeading: "Why Are Vintage Mesh-Back Trucker Hats Resurfacing in Modern Streetwear?",
+        chapterTitle: "Chapter 3: The 2026 Resurgence: Anti-Pretension in the Wardrobe",
         heading: "3. The 2026 Resurgence: Anti-Pretension in the Wardrobe",
         paragraphs: [
           "As modern street fashion grew increasingly serious and dominated by minimalist luxury logos, the trucker hat made a thunderous return. It represents a breath of fresh air: unpretentious, durable, and instantly expressive.",
@@ -411,6 +443,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "How Did Britney Spears Subvert the Traditional Schoolgirl Uniform into Pop Defiance?",
+        chapterTitle: "Chapter 1: Disrupting the Institutional Wardrobe",
         heading: "1. Disrupting the Institutional Wardrobe",
         paragraphs: [
           "The schoolgirl uniform has long been an instrument of institutional conformity: modest hemlines, subdued colors, and rigid decorum meant to suppress individuality. In the late 1990s, youth culture turned the uniform completely inside out.",
@@ -419,6 +453,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Hijacking the schoolgirl uniform was about taking the clothes assigned to young women by authority figures and rewriting the script entirely.",
       },
       {
+        questionHeading: "How Did Avril Lavigne Merge Tartan Skirts with Skater-Punk Rebellion?",
+        chapterTitle: "Chapter 2: The Pop-Punk Alternative: Avril Lavigne's Skater Rebellion",
         heading: "2. The Pop-Punk Alternative: Avril Lavigne's Skater Rebellion",
         paragraphs: [
           "By 2002, the aesthetic took a sharper, grungier turn with the arrival of 17-year-old Avril Lavigne. Ditching pop choreography for skateboards and electric guitars, she paired pleated mini skirts with her father's neckties, studded pyramid belts, and scuffed skate sneakers.",
@@ -427,6 +463,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Costume Design Heritage: The pleated plaid skirt lineage connects 1970s Vivienne Westwood punk to 1995's Clueless, reaching peak mainstream impact in 2002.",
       },
       {
+        questionHeading: "Why Did Miu Miu's Raw-Edged Micro-Mini Spark a Global High-Fashion Renaissance?",
+        chapterTitle: "Chapter 3: The Miu Miu Renaissance & Modern Reclaiming",
         heading: "3. The Miu Miu Renaissance & Modern Reclaiming",
         paragraphs: [
           "When Miuccia Prada presented the Spring/Summer 2022 collection featuring raw-edged micro-mini skirts cut so short the pocket linings spilled out, the fashion world caught its breath. What began as a nostalgic nod rapidly evolved into an era-defining silhouette.",
@@ -478,6 +516,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "Why Did 2000s Eyewear Abandon Acetate Frames in Favor of Massive Polycarbonate Shields?",
+        chapterTitle: "Chapter 1: The Optical Revolution: Banishing the Acetate Frame",
         heading: "1. The Optical Revolution: Banishing the Acetate Frame",
         paragraphs: [
           "Throughout the 1990s, sunglasses were dominated by small, dark, minimal wire ovals—think Neo in The Matrix or Carolyn Bessette-Kennedy's discreet black tortoiseshells. But as the year 2000 struck, designers wanted spectacle, scale, and luminosity.",
@@ -486,6 +526,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Y2K sunglasses weren't meant to block out the world; they were colored lenses designed to bathe the entire world in pink champagne.",
       },
       {
+        questionHeading: "How Did Pastel Gradient Tints Turn Shield Sunglasses into Indoor Cosmetic Jewelry?",
+        chapterTitle: "Chapter 2: The Tinted Gradient Phenomenon",
         heading: "2. The Tinted Gradient Phenomenon",
         paragraphs: [
           "Unlike standard dark sunglasses that conceal the eyes in shadow, Y2K shield optics celebrated transparency. Pastel yellow, bubblegum rose, and lavender lenses allowed the wearer's eyes, glitter mascara, and glossy brows to remain fully visible.",
@@ -494,6 +536,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Engineering Detail: Polycarbonate injection molding matured in 1999, enabling rimless shields with high impact resistance and compound curvature without distorting vision.",
       },
       {
+        questionHeading: "How Can You Style Frameless Wraparound Shield Sunglasses in Everyday Outfits?",
+        chapterTitle: "Chapter 3: Wearing the Shield in 2026",
         heading: "3. Wearing the Shield in 2026",
         paragraphs: [
           "Today's revival embraces the shield shade as the ultimate antidote to monotonous dark square frames. Its aerodynamic curves bring immediate attitude and nostalgic optimism to any outfit.",
@@ -545,6 +589,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "How Did Aaliyah Blueprint the Timeless Mix of Tomboy Swagger and Feminine Grace?",
+        chapterTitle: "Chapter 1: The Aaliyah Blueprint: Tomboy Elegance",
         heading: "1. The Aaliyah Blueprint: Tomboy Elegance",
         paragraphs: [
           "No conversation about early-2000s streetwear can begin without acknowledging Aaliyah Dana Haughton. Styled by legendary image architect Derek Lee, Aaliyah pioneered an effortless blend of hip-hop tomboy swagger and breathtaking feminine grace.",
@@ -553,6 +599,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "Aaliyah proved you didn't have to wear skin-tight dresses to be mesmerizing; true sensuality was owning space with baggy utility gear.",
       },
       {
+        questionHeading: "Why Did Destiny's Child Make Camouflage Utility Cargos Their Battle Armor?",
+        chapterTitle: "Chapter 2: Destiny's Child and the Camouflage Phenomenon",
         heading: "2. Destiny's Child and the Camouflage Phenomenon",
         paragraphs: [
           "When Destiny's Child dropped the music video for 'Survivor' in 2001, Tina Knowles designed custom camouflage cargo ensembles for Beyoncé, Kelly, and Michelle. It was an unmistakable visual manifesto: these women were warriors navigating the pop landscape on their own terms.",
@@ -561,6 +609,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Pattern History: 2001 camouflage wasn't standard military woodland; it was remixed in pastel pink, desert chocolate-chip, and high-contrast urban greys.",
       },
       {
+        questionHeading: "Why Are Lightweight Parachute Cargo Pants the Most Popular Trousers of the 2020s?",
+        chapterTitle: "Chapter 3: The 2026 Parachute Wave",
         heading: "3. The 2026 Parachute Wave",
         paragraphs: [
           "Today's iteration of the cargo pant takes full advantage of technical fabrications. Ultralight parachute nylon that weighs almost nothing allows massive volumes without any bulk or heat retention.",
@@ -612,6 +662,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "How Did Fendi's Mini Shoulder Bag Defy Giant Totes to Become Fashion's First It-Bag?",
+        chapterTitle: "Chapter 1: The Rebel Loaf of French Bread",
         heading: "1. The Rebel Loaf of French Bread",
         paragraphs: [
           "In 1997, the luxury accessory market was consumed by enormous, heavy leather totes designed for busy career women carrying paperwork and daily planners. Silvia Venturini Fendi proposed the exact opposite: an impossibly small, horizontal purse designed to be tucked beneath the arm like a warm French baguette.",
@@ -620,6 +672,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "The Baguette didn't pretend to carry your entire life. It carried just enough for a magical night out, and that was the whole point.",
       },
       {
+        questionHeading: "How Did Sex and the City Cement the Baguette as a Coveted Cultural Icon?",
+        chapterTitle: "Chapter 2: Television as the Ultimate Runway",
         heading: "2. Television as the Ultimate Runway",
         paragraphs: [
           "While magazines showcased editorial shoots, HBO's Sex and the City became the definitive television medium for luxury commerce. When Carrie Bradshaw was mugged in a Manhattan alleyway in Season 3, she corrected the thief with indignant pride: 'It's not a bag, it's a Baguette!'",
@@ -628,6 +682,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Collector Metric: Over 1,000 unique iterations of the Fendi Baguette have been produced, ranging from beaded silk to sheared mink and hand-painted denim.",
       },
       {
+        questionHeading: "Why Is the Compact Shoulder Pouch Still the Most Flattering Everyday Accessory?",
+        chapterTitle: "Chapter 3: The 2026 Revival: Compact Freedom",
         heading: "3. The 2026 Revival: Compact Freedom",
         paragraphs: [
           "In our current digital era where smartphones handle payments, IDs, and keys, carrying a colossal tote bag often feels entirely unnecessary. The mini shoulder baguette offers pure freedom: lightweight, ergonomic, and delightfully expressive.",
@@ -679,6 +735,8 @@ export const ARTICLES: Article[] = [
     ],
     sections: [
       {
+        questionHeading: "How Did Steve Madden's Foam Slinky Slide Redefine Casual Summer Footwear?",
+        chapterTitle: "Chapter 1: The Foam Architecture of Steve Madden",
         heading: "1. The Foam Architecture of Steve Madden",
         paragraphs: [
           "In the summer of 1999, shoe designer Steve Madden changed the landscape of casual footwear forever with the release of the 'Slinky': a slide featuring a thick black foam platform topped with a simple stretchy black elastic band.",
@@ -687,6 +745,8 @@ export const ARTICLES: Article[] = [
         pullQuote: "The platform slide was the first shoe that gave women the stature of high heels with the comfort of house slippers.",
       },
       {
+        questionHeading: "How Did Thick Platform Thong Sandals Bridge Californian Beach Style with Pop Stardom?",
+        chapterTitle: "Chapter 2: The Beach-to-Sidewalk Transition",
         heading: "2. The Beach-to-Sidewalk Transition",
         paragraphs: [
           "Along with the stretch slide, the thick foam platform thong sandal became the defining silhouette of warm-weather Y2K style. Brands like Rocket Dog and Roxy amplified the casual surf-girl aesthetic, bringing pool slides directly onto city sidewalks.",
@@ -695,6 +755,8 @@ export const ARTICLES: Article[] = [
         curatorNote: "Material Chemistry: The breakthrough was high-density closed-cell EVA foam, which resisted bottoming-out while dampening step vibration on concrete.",
       },
       {
+        questionHeading: "Why Are High-Fashion Houses Bringing Back Architectural Foam Slides Today?",
+        chapterTitle: "Chapter 3: The 2026 Revival: Sculptural Ease",
         heading: "3. The 2026 Revival: Sculptural Ease",
         paragraphs: [
           "Today's footwear designers have embraced the platform slide not as a retro novelty, but as a masterpiece of ergonomic, sculptural minimalism. Modern versions feature refined leather footbeds, lightweight shock-absorbing polymers, and architectural squared-off toes.",

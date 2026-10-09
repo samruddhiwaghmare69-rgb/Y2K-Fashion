@@ -107,10 +107,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
   const handleShare = () => {
-    let cleanOrigin = window.location.origin;
-    if (cleanOrigin.includes('5o91')) {
-      cleanOrigin = cleanOrigin.replace(/[-.]?5o91[a-z0-9-]*/gi, '');
-    }
+    let cleanOrigin = window.location.origin
+      .replace(/[-_.]?5o91[-_.]?[a-z0-9-]*/gi, '')
+      .replace(/\/+$/, '');
     const cleanUrl = `${cleanOrigin}/${article.slug}`;
     navigator.clipboard.writeText(cleanUrl);
     setCopiedLink(true);
@@ -238,15 +237,25 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </span>
         </div>
 
-        {/* Article Headline */}
-        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-950 tracking-tight leading-[1.15] mb-5 text-balance">
+        {/* Article Headline: One H1 per main topic */}
+        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-950 tracking-tight leading-[1.15] mb-4 text-balance">
           {article.title}
         </h1>
 
-        {/* Subtitle Deck */}
-        <p className="text-lg sm:text-xl text-stone-600 leading-relaxed font-light mb-8">
+        {/* Subtitle Deck: H2 Sub Heading */}
+        <h2 className="text-lg sm:text-xl text-stone-600 leading-relaxed font-light mb-4">
           {article.subtitle}
-        </p>
+        </h2>
+
+        {/* Clean URL Badge (No IDs, No Hashes, No 5o91) */}
+        <div className="flex flex-wrap items-center gap-2 mb-6 text-xs font-mono">
+          <span className="text-stone-500 bg-white border border-stone-200 px-2.5 py-1 flex items-center gap-1.5">
+            <span className="text-stone-400">CLEAN URL:</span>
+            <span className="text-fuchsia-700 font-semibold">/{article.slug}</span>
+          </span>
+          <span className="text-stone-400">·</span>
+          <span className="text-stone-500">Short, descriptive, lowercase with hyphens</span>
+        </div>
 
         {/* Author Byline Lockup */}
         <div className="flex items-center justify-between py-4 border-y border-stone-200 text-xs text-stone-600 mb-10">
@@ -349,32 +358,40 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </div>
         )}
 
-        {/* Core Long-form Article Narrative */}
-        <div className="space-y-10 text-stone-800 text-base sm:text-lg leading-[1.8] font-light">
+        {/* Core Long-form Article Narrative: H2 for Section GEO Questions, H3 for Inside Chapter Material */}
+        <div className="space-y-12 text-stone-800 text-base sm:text-lg leading-[1.8] font-light">
           {article.sections.map((section, idx) => (
-            <section key={idx} className="space-y-5">
-              <h2 className="font-display text-xl sm:text-2xl font-bold text-stone-950 pt-3">
-                {section.heading}
+            <section key={idx} className="space-y-4 pt-8 border-t border-stone-200/80 first:border-t-0 first:pt-0">
+              {/* H2 Section Subheading: Question format for optimal GEO with natural keywords */}
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-stone-950 pt-2 leading-snug">
+                {section.questionHeading}
               </h2>
 
-              {section.paragraphs.map((p, pIdx) => {
-                // Drop cap on first paragraph of the first section
-                if (idx === 0 && pIdx === 0) {
+              {/* H3 Inside Chapter Material like in a book */}
+              <h3 className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-fuchsia-700 uppercase flex items-center gap-2">
+                <span>{section.chapterTitle}</span>
+              </h3>
+
+              <div className="space-y-4 pt-1">
+                {section.paragraphs.map((p, pIdx) => {
+                  // Drop cap on first paragraph of the first section
+                  if (idx === 0 && pIdx === 0) {
+                    return (
+                      <p
+                        key={pIdx}
+                        className="first-letter:text-5xl first-letter:font-serif first-letter:font-extrabold first-letter:float-left first-letter:mr-3.5 first-letter:mt-1 first-letter:text-stone-950 leading-relaxed"
+                      >
+                        {p}
+                      </p>
+                    );
+                  }
                   return (
-                    <p
-                      key={pIdx}
-                      className="first-letter:text-5xl first-letter:font-serif first-letter:font-extrabold first-letter:float-left first-letter:mr-3.5 first-letter:mt-1 first-letter:text-stone-950 leading-relaxed"
-                    >
+                    <p key={pIdx} className="leading-relaxed">
                       {p}
                     </p>
                   );
-                }
-                return (
-                  <p key={pIdx} className="leading-relaxed">
-                    {p}
-                  </p>
-                );
-              })}
+                })}
+              </div>
 
               {/* Editorial Pull Quote */}
               {section.pullQuote && (
