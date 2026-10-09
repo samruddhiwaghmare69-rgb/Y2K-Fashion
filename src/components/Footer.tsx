@@ -42,7 +42,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onSelectCategory('Streetwear & Lounge')}
-                  className="hover:text-fuchsia-400 transition-colors cursor-pointer"
+                  title="Filter archive by Streetwear & Loungewear chronicles"
+                  className="hover:text-fuchsia-400 transition-colors cursor-pointer text-left"
                 >
                   Streetwear & Loungewear
                 </button>
@@ -50,7 +51,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onSelectCategory('Denim Archives')}
-                  className="hover:text-fuchsia-400 transition-colors cursor-pointer"
+                  title="Filter archive by Denim Archives & Low-Rise chronicles"
+                  className="hover:text-fuchsia-400 transition-colors cursor-pointer text-left"
                 >
                   Denim Archives & Low-Rise
                 </button>
@@ -58,7 +60,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onSelectCategory('Techno-Futurism')}
-                  className="hover:text-fuchsia-400 transition-colors cursor-pointer"
+                  title="Filter archive by Techno-Futurism & Metallics chronicles"
+                  className="hover:text-fuchsia-400 transition-colors cursor-pointer text-left"
                 >
                   Techno-Futurism & Metallics
                 </button>
@@ -66,7 +69,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onSelectCategory('Accessories & Bling')}
-                  className="hover:text-fuchsia-400 transition-colors cursor-pointer"
+                  title="Filter archive by Accessories, Bling & Clips chronicles"
+                  className="hover:text-fuchsia-400 transition-colors cursor-pointer text-left"
                 >
                   Accessories, Bling & Clips
                 </button>
@@ -74,7 +78,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onSelectCategory('Footwear & Stompers')}
-                  className="hover:text-fuchsia-400 transition-colors cursor-pointer"
+                  title="Filter archive by Footwear & Platform Stompers chronicles"
+                  className="hover:text-fuchsia-400 transition-colors cursor-pointer text-left"
                 >
                   Footwear & Platform Stompers
                 </button>

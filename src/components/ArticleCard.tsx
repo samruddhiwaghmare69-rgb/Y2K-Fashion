@@ -37,6 +37,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           onSelect(article);
         }
       }}
+      title={`Read complete 24-paragraph archival chronicle on ${article.title}`}
+      aria-label={`Read complete 24-paragraph archival chronicle on ${article.title}`}
       className="group flex flex-col bg-white border border-stone-200/90 hover:border-stone-400/90 rounded-none transition-all duration-200 cursor-pointer overflow-hidden h-full shadow-xs hover:shadow-md text-inherit no-underline"
     >
       {/* Visual Media Container */}
@@ -136,7 +138,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           <div className="flex items-center gap-1 text-stone-900 font-semibold group-hover:text-fuchsia-700 transition-colors">
-            <span>Read Chronicle</span>
+            <span>Read Detailed Chronicle</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
         </div>

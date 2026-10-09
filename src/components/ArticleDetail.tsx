@@ -15,7 +15,11 @@ import {
   Clock,
   Send,
   Eye,
-  Info
+  Info,
+  ExternalLink,
+  ArrowUpRight,
+  Compass,
+  Landmark
 } from 'lucide-react';
 
 interface ArticleDetailProps {
@@ -133,6 +137,77 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     localStorage.setItem(`y2k_comments_${article.id}`, JSON.stringify(updated));
     setNewCommentText('');
     setNewAuthor('');
+  };
+
+  // Parses markdown links [Descriptive Anchor Text](url) within paragraphs
+  const renderParagraphWithLinks = (text: string, isFirstSectionAndParagraph: boolean) => {
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let match: RegExpExecArray | null;
+    let lastIndex = 0;
+    const elements: React.ReactNode[] = [];
+
+    while ((match = linkRegex.exec(text)) !== null) {
+      const [fullMatch, anchorText, url] = match;
+      const matchIndex = match.index;
+
+      if (matchIndex > lastIndex) {
+        elements.push(text.substring(lastIndex, matchIndex));
+      }
+
+      const isInternal = url.startsWith('/');
+      if (isInternal) {
+        const targetSlug = url.replace(/^\//, '');
+        const targetArticle = articles.find((a) => a.slug === targetSlug || a.id === targetSlug);
+        elements.push(
+          <a
+            key={`inline-link-${matchIndex}`}
+            href={url}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey) {
+                e.preventDefault();
+                if (targetArticle) {
+                  onSelectArticle(targetArticle);
+                }
+              }
+            }}
+            title={targetArticle ? `Explore internal archive chronicle: ${targetArticle.title}` : `Explore internal archive chronicle: ${anchorText}`}
+            className="text-fuchsia-700 hover:text-fuchsia-950 underline underline-offset-4 decoration-fuchsia-400 hover:decoration-fuchsia-700 font-medium transition-colors cursor-pointer inline"
+          >
+            {anchorText}
+          </a>
+        );
+      } else {
+        elements.push(
+          <a
+            key={`inline-link-${matchIndex}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`Consult external primary collection: ${anchorText}`}
+            className="inline text-stone-900 hover:text-fuchsia-700 underline underline-offset-4 decoration-stone-400 hover:decoration-fuchsia-600 font-medium transition-colors group/ext"
+          >
+            <span>{anchorText}</span>
+            <ExternalLink className="w-3.5 h-3.5 inline-block text-stone-500 group-hover/ext:text-fuchsia-600 shrink-0 ml-1 align-baseline" />
+          </a>
+        );
+      }
+
+      lastIndex = matchIndex + fullMatch.length;
+    }
+
+    if (lastIndex < text.length) {
+      elements.push(text.substring(lastIndex));
+    }
+
+    if (isFirstSectionAndParagraph) {
+      return (
+        <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-extrabold first-letter:float-left first-letter:mr-3.5 first-letter:mt-1 first-letter:text-stone-950 leading-relaxed">
+          {elements}
+        </p>
+      );
+    }
+
+    return <p className="leading-relaxed">{elements}</p>;
   };
 
   return (
@@ -373,24 +448,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               </h3>
 
               <div className="space-y-4 pt-1">
-                {section.paragraphs.map((p, pIdx) => {
-                  // Drop cap on first paragraph of the first section
-                  if (idx === 0 && pIdx === 0) {
-                    return (
-                      <p
-                        key={pIdx}
-                        className="first-letter:text-5xl first-letter:font-serif first-letter:font-extrabold first-letter:float-left first-letter:mr-3.5 first-letter:mt-1 first-letter:text-stone-950 leading-relaxed"
-                      >
-                        {p}
-                      </p>
-                    );
-                  }
-                  return (
-                    <p key={pIdx} className="leading-relaxed">
-                      {p}
-                    </p>
-                  );
-                })}
+                {section.paragraphs.map((p, pIdx) => (
+                  <React.Fragment key={pIdx}>
+                    {renderParagraphWithLinks(p, idx === 0 && pIdx === 0)}
+                  </React.Fragment>
+                ))}
               </div>
 
               {/* Editorial Pull Quote */}
@@ -462,6 +524,126 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             ))}
           </ul>
         </div>
+
+        {/* Module A: Internal Curatorial Link Network */}
+        {article.internalLinks && article.internalLinks.length > 0 && (
+          <section className="mt-12 p-6 sm:p-8 bg-stone-50 border border-stone-200" aria-label="Internal Curatorial Cross-References">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-stone-200">
+              <div className="flex items-center gap-2">
+                <Compass className="w-5 h-5 text-fuchsia-700" />
+                <h3 className="font-display text-xl font-bold text-stone-950">
+                  Internal Curatorial Cross-References & Contextual Archives
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-fuchsia-700 bg-fuchsia-50 border border-fuchsia-200 px-2 py-0.5 font-semibold hidden sm:inline">
+                INTERNAL NETWORK
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed">
+              Explore interconnected fashion chronicles from the Millennium Revival archive. Each internal cross-reference traces structural, material, and subcultural connections with descriptive curatorial guidance:
+            </p>
+
+            <div className="space-y-4">
+              {article.internalLinks.map((link, lIdx) => {
+                const target = articles.find((a) => a.slug === link.targetSlug || a.id === link.targetSlug);
+                return (
+                  <div
+                    key={lIdx}
+                    className="p-4 bg-white border border-stone-200 hover:border-fuchsia-300 transition-colors group"
+                  >
+                    <div className="flex flex-wrap items-center gap-2 mb-2 text-xs font-mono">
+                      <span className="text-fuchsia-700 font-semibold bg-fuchsia-50 px-2 py-0.5 border border-fuchsia-100">
+                        {link.relationType}
+                      </span>
+                      <span className="text-stone-300">·</span>
+                      <span className="text-stone-500">CLEAN URL: /{link.targetSlug}</span>
+                      {target && (
+                        <>
+                          <span className="text-stone-300">·</span>
+                          <span className="text-stone-500">{target.readTime}</span>
+                          <span className="text-stone-300">·</span>
+                          <span className="text-stone-500">{target.category}</span>
+                        </>
+                      )}
+                    </div>
+
+                    <a
+                      href={`/${link.targetSlug}`}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey) {
+                          e.preventDefault();
+                          if (target) onSelectArticle(target);
+                        }
+                      }}
+                      className="text-stone-900 group-hover:text-fuchsia-700 font-semibold text-sm sm:text-base leading-snug flex items-start gap-1.5 underline decoration-stone-300 group-hover:decoration-fuchsia-600 underline-offset-4 cursor-pointer transition-colors"
+                      title={`Navigate to internal archive: ${link.anchorText}`}
+                    >
+                      <span>{link.anchorText}</span>
+                      <ArrowUpRight className="w-4 h-4 shrink-0 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+
+                    <p className="text-xs sm:text-sm text-stone-600 mt-2 leading-relaxed">
+                      {link.contextDescription}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Module B: Authoritative External Research & Primary Archival Citations */}
+        {article.externalLinks && article.externalLinks.length > 0 && (
+          <section className="mt-8 p-6 sm:p-8 bg-white border border-stone-200" aria-label="Authoritative External Research and Primary Archival Citations">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-stone-200">
+              <div className="flex items-center gap-2">
+                <Landmark className="w-5 h-5 text-stone-800" />
+                <h3 className="font-display text-xl font-bold text-stone-950">
+                  Authoritative External Research & Museum Archival Citations
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-stone-700 bg-stone-100 border border-stone-300 px-2 py-0.5 font-semibold hidden sm:inline">
+                PRIMARY CITATIONS
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed">
+              Consult verified primary documentation, museum textile conservation logs, and academic costume archives. Outbound citations feature detailed descriptive anchor text and institutional provenance:
+            </p>
+
+            <div className="space-y-4">
+              {article.externalLinks.map((extLink, eIdx) => (
+                <div
+                  key={eIdx}
+                  className="p-4 bg-stone-50 border border-stone-200 hover:border-stone-400 transition-colors group"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span className="text-xs font-mono text-stone-700 font-semibold bg-white px-2 py-0.5 border border-stone-200">
+                      {extLink.sourceInstitution}
+                    </span>
+                    <span className="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200 font-semibold">
+                      {extLink.calloutBadge}
+                    </span>
+                  </div>
+
+                  <a
+                    href={extLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-stone-900 group-hover:text-fuchsia-700 font-semibold text-sm sm:text-base leading-snug flex items-start gap-1.5 underline decoration-stone-300 group-hover:decoration-fuchsia-600 underline-offset-4 transition-colors"
+                    title={`External primary citation: ${extLink.anchorText} (${extLink.sourceInstitution})`}
+                  >
+                    <span>{extLink.anchorText}</span>
+                    <ExternalLink className="w-4 h-4 shrink-0 mt-0.5 text-stone-500 group-hover:text-fuchsia-700" />
+                  </a>
+
+                  <p className="text-xs sm:text-sm text-stone-600 mt-2 leading-relaxed">
+                    {extLink.contextDescription}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Tags unboxed */}
         <div className="mt-8 pt-6 border-t border-stone-200 flex flex-wrap items-center gap-2 text-xs font-mono text-stone-500">
@@ -583,14 +765,18 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   onSelectArticle(prevArticle);
                 }
               }}
-              className="p-4 text-left bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer text-inherit no-underline"
+              title={`Read previous archival chronicle: ${prevArticle.title}`}
+              aria-label={`Read previous archival chronicle: ${prevArticle.title}`}
+              className="p-5 text-left bg-white border border-stone-200 hover:border-fuchsia-400 transition-colors group cursor-pointer text-inherit no-underline shadow-xs"
             >
-              <div className="flex items-center gap-1 text-xs text-stone-500 font-mono mb-1">
-                <ChevronLeft className="w-3.5 h-3.5" />
-                <span>PREVIOUS CHRONICLE</span>
+              <div className="flex items-center gap-1.5 text-xs text-stone-500 font-mono mb-2">
+                <ChevronLeft className="w-3.5 h-3.5 text-fuchsia-700" />
+                <span className="font-semibold text-fuchsia-700">PREVIOUS CHRONICLE</span>
+                <span className="text-stone-300">·</span>
+                <span>{prevArticle.category}</span>
               </div>
-              <div className="font-display font-bold text-sm text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-1">
-                {prevArticle.title}
+              <div className="font-display font-bold text-sm sm:text-base text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-2">
+                Read chronicle: {prevArticle.title}
               </div>
             </a>
           ) : <div />}
@@ -604,14 +790,18 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   onSelectArticle(nextArticle);
                 }
               }}
-              className="p-4 text-right bg-white border border-stone-200 hover:border-stone-400 transition-colors group cursor-pointer text-inherit no-underline"
+              title={`Read next archival chronicle: ${nextArticle.title}`}
+              aria-label={`Read next archival chronicle: ${nextArticle.title}`}
+              className="p-5 text-right bg-white border border-stone-200 hover:border-fuchsia-400 transition-colors group cursor-pointer text-inherit no-underline shadow-xs"
             >
-              <div className="flex items-center justify-end gap-1 text-xs text-stone-500 font-mono mb-1">
-                <span>NEXT CHRONICLE</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+              <div className="flex items-center justify-end gap-1.5 text-xs text-stone-500 font-mono mb-2">
+                <span>{nextArticle.category}</span>
+                <span className="text-stone-300">·</span>
+                <span className="font-semibold text-fuchsia-700">NEXT CHRONICLE</span>
+                <ChevronRight className="w-3.5 h-3.5 text-fuchsia-700" />
               </div>
-              <div className="font-display font-bold text-sm text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-1">
-                {nextArticle.title}
+              <div className="font-display font-bold text-sm sm:text-base text-stone-900 group-hover:text-fuchsia-700 transition-colors line-clamp-2">
+                Read chronicle: {nextArticle.title}
               </div>
             </a>
           ) : <div />}
