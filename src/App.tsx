@@ -116,6 +116,44 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
+  // Synchronize 150-160 character meta description and title for SEO
+  useEffect(() => {
+    const defaultTitle = "Millennium REVIVAL: Bring Back Y2K Fashion";
+    const defaultDesc =
+      "Bring back Y2K fashion with 10 deep-dive articles on velour, low-rise denim, and cyber trends. Explore the 2000s style archives to recreate your look today.";
+
+    const targetTitle = selectedArticle
+      ? `${selectedArticle.title} | Millennium REVIVAL`
+      : defaultTitle;
+    const targetDesc = selectedArticle
+      ? selectedArticle.metaDescription
+      : defaultDesc;
+
+    document.title = targetTitle;
+
+    const setMeta = (nameOrProperty: string, value: string) => {
+      let meta =
+        document.querySelector(`meta[name="${nameOrProperty}"]`) ||
+        document.querySelector(`meta[property="${nameOrProperty}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (nameOrProperty.startsWith('og:')) {
+          meta.setAttribute('property', nameOrProperty);
+        } else {
+          meta.setAttribute('name', nameOrProperty);
+        }
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', value);
+    };
+
+    setMeta('description', targetDesc);
+    setMeta('og:description', targetDesc);
+    setMeta('twitter:description', targetDesc);
+    setMeta('og:title', targetTitle);
+    setMeta('twitter:title', targetTitle);
+  }, [selectedArticle]);
+
   const handleSelectArticle = (article: Article) => {
     setSelectedArticle(article);
     window.history.pushState({}, '', `/${article.slug}`);

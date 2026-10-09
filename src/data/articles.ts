@@ -4,6 +4,7 @@ export interface Article {
   title: string;
   subtitle: string;
   excerpt: string;
+  metaDescription: string;
   date: string;
   readTime: string;
   category: string;
@@ -40,6 +41,7 @@ export const ARTICLES: Article[] = [
     title: "The Velour Renaissance: Juicy Tracksuits & The High-Low Velvet Revolution",
     subtitle: "How rhinestone-crusted plush loungewear transitioned from Beverly Hills paparazzi bait to contemporary runway canon.",
     excerpt: "Before athleisure was embraced by haute couture, Pamela Skaist-Levy and Gela Nash-Taylor engineered a candy-colored plush uniform that defined Hollywood in 2001. Today's revival proves comfort and unapologetic decadence were never mutually exclusive.",
+    metaDescription: "Bring back Y2K fashion with Juicy velour tracksuits. Discover the comfort luxury revolution, styling tips, and archives to elevate your retro leisurewear.",
     date: "March 28, 2026",
     readTime: "5 min read",
     category: "Streetwear & Lounge",
@@ -106,6 +108,7 @@ export const ARTICLES: Article[] = [
     title: "Low-Rise Salvation: The Controversial Hemline That Defined a Millennium",
     subtitle: "Examining Frankie B, exposed hip bones, and how contemporary designers rescued the 3-inch zipper from its toxic past.",
     excerpt: "No single garment sparked as much cultural hysteria, parental outrage, and magazine ink as the sub-four-inch low-rise jean. As the silhouette re-emerges across TikTok and high fashion runways, the industry is rewriting the narrative around body autonomy and tailored ease.",
+    metaDescription: "Bring back Y2K fashion with low-rise denim and bootcut jeans. Explore Frankie B history, body-positive styling, and 2000s trends to master the hip-hugger cut.",
     date: "March 26, 2026",
     readTime: "6 min read",
     category: "Denim Archives",
@@ -172,6 +175,7 @@ export const ARTICLES: Article[] = [
     title: "Cyber-Metallic Futurism: Silver Puffer Jackets & Space-Age Chromatics",
     subtitle: "When the countdown to the millennium filled our closets with liquid mercury, NASA foils, and techno-optimism.",
     excerpt: "At the dawn of the year 2000, society stood mesmerized by the digital frontier. Fashion responded with reflective foils, holographic textiles, and mirror-finish outerwear. As generative cyberspace grips culture once more, the metallic silver palette is taking over the city.",
+    metaDescription: "Bring back Y2K fashion with silver puffer jackets and space-age chrome aesthetics. Explore millennium techno-futurism and styling tips to shine this season.",
     date: "March 24, 2026",
     readTime: "5 min read",
     category: "Techno-Futurism",
@@ -238,6 +242,7 @@ export const ARTICLES: Article[] = [
     title: "The Butterfly Effect: Winged Hair Clips, Mesh Tops & Iridescent Whimsy",
     subtitle: "How miniature plastic fauna became the universal mascot of early 2000s playful femininity.",
     excerpt: "No styling session between 1998 and 2003 was complete without a dozen pastel butterfly clips clutching tendrils of crimped hair. We trace how this joyful, whimsical accessory migrated from Claire's Accessories to haute-couture runways.",
+    metaDescription: "Bring back Y2K fashion with whimsical butterfly clips and glitter tops. Explore nostalgic 2000s hair trends and styling secrets to craft your playful look.",
     date: "March 22, 2026",
     readTime: "4 min read",
     category: "Accessories & Bling",
@@ -304,6 +309,7 @@ export const ARTICLES: Article[] = [
     title: "Trucker Hats & Von Dutch: The Subversive Ascent of Trash-Chic Couture",
     subtitle: "When foam fronts and mesh backs conquered MTV, skateboarding parks, and A-list red carpets.",
     excerpt: "Between 2002 and 2005, a five-dollar piece of midwestern agricultural promo gear became the most coveted status symbol on Earth. We unpack the bizarre, hilarious, and brilliant reign of the mesh-back trucker hat.",
+    metaDescription: "Bring back Y2K fashion with Von Dutch mesh trucker hats and skater-punk style. Explore trash-chic MTV archives and styling tips to upgrade your streetwear.",
     date: "March 20, 2026",
     readTime: "5 min read",
     category: "Headwear & Culture",
@@ -370,6 +376,7 @@ export const ARTICLES: Article[] = [
     title: "Micro-Minis & Pleated Plaid: The Schoolgirl Uniform Subversion",
     subtitle: "From Britney's debut video to Miu Miu's runway shears: the political history of the razor-short hemline.",
     excerpt: "Pleated tartan skirts, neckties worn over tank tops, and knee-high combat stompers: how early 2000s pop and rock icons hijacked prep school uniforms to forge an enduring language of female defiance.",
+    metaDescription: "Bring back Y2K fashion with pleated tartan micro-mini skirts and platform boots. Explore pop-punk subversion and styling tips to rock this iconic silhouette.",
     date: "March 18, 2026",
     readTime: "5 min read",
     category: "Silhouettes & Skirts",
@@ -436,6 +443,7 @@ export const ARTICLES: Article[] = [
     title: "Shield Shades & Bug-Eye Frames: The Optical Armor of 2000s Pop Icons",
     subtitle: "From Christian Dior Glossy shields to gradient pastel lenses: how sunglasses became face-filling shields.",
     excerpt: "Rimless, oversized, and tinted in rose, champagne, and canary yellow: 2000s sunglasses weren't designed to hide behind; they were designed to announce you had arrived under intense studio flashbulbs.",
+    metaDescription: "Bring back Y2K fashion with frameless tinted shield sunglasses. Explore Dior Glossy optics and styling tips to bring 2000s pop-star glamour to your daily fit.",
     date: "March 15, 2026",
     readTime: "4 min read",
     category: "Eyewear & Optics",
@@ -502,6 +510,7 @@ export const ARTICLES: Article[] = [
     title: "Cargo Pants & Parachute Pants: The Tactical Pop Transition",
     subtitle: "How Aaliyah, TLC, and Destiny's Child turned military pockets into the greatest streetwear uniform ever made.",
     excerpt: "Before utility pants were adopted by outdoor gorpcore enthusiasts, they were championed by the queens of 90s and 2000s R&B. We examine how oversized parachute nylon and multi-pocket cargos transformed women's streetwear forever.",
+    metaDescription: "Bring back Y2K fashion with oversized cargo pants and parachute streetwear. Explore Aaliyah-inspired utility styling and archives to nail the baggy aesthetic.",
     date: "March 12, 2026",
     readTime: "6 min read",
     category: "Tactical Streetwear",
@@ -568,6 +577,7 @@ export const ARTICLES: Article[] = [
     title: "Baguette Bags & Mini Pouches: The It-Bag Golden Age",
     subtitle: "How Silvia Venturini Fendi and Carrie Bradshaw transformed the handbag into an ergonomic extension of the arm.",
     excerpt: "Before the turn of the century, luxury handbags were bulky, structured, and heavy. Then came a slim, compact pouch designed to tuck neatly under the arm like a loaf of French bread—and it revolutionized fashion forever.",
+    metaDescription: "Bring back Y2K fashion with patent mini baguette bags and shoulder pouches. Explore Carrie Bradshaw it-bag history and styling tips to complete your outfit.",
     date: "March 10, 2026",
     readTime: "5 min read",
     category: "It-Bags & Pouches",
@@ -634,6 +644,7 @@ export const ARTICLES: Article[] = [
     title: "Platform Thongs & Chunky Mules: The Architectural Shoes of the New Era",
     subtitle: "How Steve Madden's stretchy black slides and 4-inch foam slabs gave a generation their summer stride.",
     excerpt: "Few sounds are as emblematic of summer 2001 as the rhythmic 'thwack' of a chunky foam platform slide hitting pavement. We celebrate the sculptural footwear that elevated a generation without sacrificing an ounce of cool.",
+    metaDescription: "Bring back Y2K fashion with iconic foam platform thong sandals and chunky mules. Explore Steve Madden slide history and styling tips for effortless stride.",
     date: "March 08, 2026",
     readTime: "5 min read",
     category: "Footwear & Stompers",
