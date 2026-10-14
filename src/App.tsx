@@ -12,6 +12,7 @@ import { StyleQuizModal } from './components/StyleQuizModal';
 import { WeightAuditModal } from './components/WeightAuditModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { Footer } from './components/Footer';
+import { ImageHoverTooltip } from './components/ImageHoverTooltip';
 import {
   Sparkles,
   ArrowRight,
@@ -22,6 +23,7 @@ import {
   BookOpen,
   Layers,
   Zap,
+  Info,
 } from 'lucide-react';
 
 export default function App() {
@@ -327,16 +329,39 @@ export default function App() {
                       }}
                       className="lg:col-span-7 group cursor-pointer text-inherit no-underline block"
                     >
-                      <div className="relative aspect-4/3 w-full bg-stone-100 border border-stone-200 overflow-hidden mb-5">
+                      <div className="relative aspect-4/3 w-full bg-stone-100 border border-stone-200 overflow-hidden mb-5 group/leadimg">
                         <img
                           src={leadStory.image.src}
                           alt={leadStory.image.alt}
+                          title={`Image Description: ${leadStory.image.alt} — ${leadStory.image.caption}`}
+                          data-image-description={leadStory.image.alt}
+                          data-image-caption={leadStory.image.caption}
+                          data-image-specs={`${leadStory.image.fileSize} · ${leadStory.image.format} · ${leadStory.image.dimensions}`}
                           referrerPolicy="no-referrer"
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                         />
-                        <div className="absolute top-3 right-3 bg-stone-900/85 text-white font-mono text-xs px-2.5 py-1 backdrop-blur-xs flex items-center gap-1.5">
+                        <div className="absolute top-3 right-3 bg-stone-900/85 text-white font-mono text-xs px-2.5 py-1 backdrop-blur-xs flex items-center gap-1.5 z-10">
                           <HardDrive className="w-3 h-3 text-emerald-400" />
                           <span>{leadStory.image.fileSize} (WebP)</span>
+                        </div>
+                        {/* Hover Image Description Overlay */}
+                        <div
+                          role="tooltip"
+                          aria-label="Image Description"
+                          className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-stone-950 via-stone-950/85 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 flex flex-col justify-end"
+                        >
+                          <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-fuchsia-400 font-semibold mb-1">
+                            <Info className="w-3.5 h-3.5 text-fuchsia-400 shrink-0" />
+                            <span>Image Description</span>
+                            <span className="text-stone-400">·</span>
+                            <span className="text-stone-300 font-normal">{leadStory.image.dimensions} · WebP</span>
+                          </div>
+                          <p className="text-xs sm:text-sm text-stone-100 font-sans leading-relaxed">
+                            {leadStory.image.alt}
+                          </p>
+                          <p className="text-[11px] text-stone-400 font-serif italic mt-1 line-clamp-1">
+                            {leadStory.image.caption}
+                          </p>
                         </div>
                       </div>
 
@@ -384,11 +409,29 @@ export default function App() {
                             <img
                               src={secArticle.image.src}
                               alt={secArticle.image.alt}
+                              title={`Image Description: ${secArticle.image.alt} — ${secArticle.image.caption}`}
+                              data-image-description={secArticle.image.alt}
+                              data-image-caption={secArticle.image.caption}
+                              data-image-specs={`${secArticle.image.fileSize} · ${secArticle.image.format} · ${secArticle.image.dimensions}`}
                               referrerPolicy="no-referrer"
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                             />
-                            <div className="absolute top-2 right-2 bg-stone-900/80 text-white font-mono text-[11px] px-2 py-0.5">
+                            <div className="absolute top-2 right-2 bg-stone-900/80 text-white font-mono text-[11px] px-2 py-0.5 z-10">
                               {secArticle.image.fileSize}
+                            </div>
+                            {/* Hover Image Description Overlay */}
+                            <div
+                              role="tooltip"
+                              aria-label="Image Description"
+                              className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-stone-950 via-stone-950/85 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 flex flex-col justify-end"
+                            >
+                              <div className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-fuchsia-400 font-semibold mb-0.5">
+                                <Info className="w-3 h-3 text-fuchsia-400 shrink-0" />
+                                <span>Image Description</span>
+                              </div>
+                              <p className="text-xs text-stone-100 font-sans leading-snug line-clamp-2">
+                                {secArticle.image.alt}
+                              </p>
                             </div>
                           </div>
 
@@ -651,6 +694,8 @@ export default function App() {
           }
         }}
       />
+      {/* Universal Image Hover Tooltip for all images across all views and modals */}
+      <ImageHoverTooltip />
     </div>
   );
 }

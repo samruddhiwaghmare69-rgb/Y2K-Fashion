@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Article } from '../data/articles';
-import { ArrowUpRight, Heart, Bookmark, HardDrive } from 'lucide-react';
+import { ArrowUpRight, Heart, Bookmark, HardDrive, Info } from 'lucide-react';
 
 interface ArticleCardProps {
   article: Article;
@@ -61,6 +61,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <img
             src={article.image.src}
             alt={article.image.alt}
+            title={`Image Description: ${article.image.alt} — ${article.image.caption}`}
+            data-image-description={article.image.alt}
+            data-image-caption={article.image.caption}
+            data-image-specs={`${article.image.fileSize} · ${article.image.format} · ${article.image.dimensions}`}
             referrerPolicy="no-referrer"
             loading="lazy"
             onLoad={() => setImageLoaded(true)}
@@ -72,15 +76,32 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         )}
 
         {/* Lightweight Asset Spec Watermark Overlay (Clean, unboxed) */}
-        <div className="absolute top-2.5 right-2.5 bg-stone-900/80 backdrop-blur-xs text-white text-[11px] font-mono px-2 py-0.5 flex items-center gap-1.5 pointer-events-none">
+        <div className="absolute top-2.5 right-2.5 bg-stone-900/80 backdrop-blur-xs text-white text-[11px] font-mono px-2 py-0.5 flex items-center gap-1.5 pointer-events-none z-10">
           <HardDrive className="w-3 h-3 text-emerald-400" />
           <span>{article.image.fileSize}</span>
           <span className="text-stone-400">·</span>
           <span>WebP</span>
         </div>
 
+        {/* Visual Image Description Overlay on Hover */}
+        <div
+          role="tooltip"
+          aria-label="Image Description"
+          className="absolute inset-x-0 bottom-0 p-3 pr-20 bg-gradient-to-t from-stone-950 via-stone-950/85 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-end z-10"
+        >
+          <div className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-fuchsia-400 font-semibold mb-0.5">
+            <Info className="w-3 h-3 text-fuchsia-400 shrink-0" />
+            <span>Image Description</span>
+            <span className="text-stone-400">·</span>
+            <span className="text-stone-300 font-normal">{article.image.dimensions}</span>
+          </div>
+          <p className="text-xs text-stone-100 font-sans leading-snug line-clamp-3">
+            {article.image.alt}
+          </p>
+        </div>
+
         {/* Action Shortcuts overlay */}
-        <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20">
           <button
             onClick={(e) => {
               e.stopPropagation();

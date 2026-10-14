@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, CheckCircle2, HardDrive, Zap, ArrowUpRight } from 'lucide-react';
+import { X, CheckCircle2, HardDrive, Zap, ArrowUpRight, Info } from 'lucide-react';
 import { Article, ARTICLES } from '../data/articles';
 
 interface WeightAuditModalProps {
@@ -81,14 +81,31 @@ export const WeightAuditModal: React.FC<WeightAuditModalProps> = ({
                   className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-stone-50 transition-colors"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    {/* Thumbnail preview */}
-                    <div className="w-14 h-11 shrink-0 bg-stone-100 overflow-hidden border border-stone-200">
+                    {/* Thumbnail preview with hover description */}
+                    <div className="relative w-14 h-11 shrink-0 bg-stone-100 border border-stone-200 group/thumb">
                       <img
                         src={article.image.src}
                         alt={article.image.alt}
+                        title={`Image Description: ${article.image.alt} — ${article.image.caption}`}
+                        data-image-description={article.image.alt}
+                        data-image-caption={article.image.caption}
+                        data-image-specs={`${article.image.fileSize} · ${article.image.format} · ${article.image.dimensions}`}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
                       />
+                      {/* Hover Description Tooltip Popover */}
+                      <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-64 p-2.5 bg-stone-950 text-white text-xs rounded shadow-2xl border border-stone-800 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                        <div className="flex items-center justify-between text-[10px] font-mono text-fuchsia-400 font-semibold mb-1">
+                          <span className="flex items-center gap-1">
+                            <Info className="w-3 h-3 text-fuchsia-400 shrink-0" />
+                            <span>IMAGE DESCRIPTION</span>
+                          </span>
+                          <span className="text-stone-400 text-[9px]">{article.image.dimensions}</span>
+                        </div>
+                        <p className="text-[11px] text-stone-200 leading-snug">
+                          {article.image.alt}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="min-w-0">

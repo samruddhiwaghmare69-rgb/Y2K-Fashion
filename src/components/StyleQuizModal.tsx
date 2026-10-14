@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
+import { X, Sparkles, ArrowRight, RotateCcw, Info } from 'lucide-react';
 import { Article, ARTICLES } from '../data/articles';
 
 interface StyleQuizModalProps {
@@ -195,15 +195,35 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
               {resultArticle.excerpt}
             </p>
 
-            <div className="relative aspect-4/3 max-w-sm mx-auto mb-6 border border-stone-200 overflow-hidden bg-stone-100 shadow-sm">
+            <div className="relative aspect-4/3 max-w-sm mx-auto mb-6 border border-stone-200 overflow-hidden bg-stone-100 shadow-sm group/quizimg">
               <img
                 src={resultArticle.image.src}
                 alt={resultArticle.image.alt}
+                title={`Image Description: ${resultArticle.image.alt} — ${resultArticle.image.caption}`}
+                data-image-description={resultArticle.image.alt}
+                data-image-caption={resultArticle.image.caption}
+                data-image-specs={`${resultArticle.image.fileSize} · ${resultArticle.image.format} · ${resultArticle.image.dimensions}`}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover/quizimg:scale-103"
               />
-              <div className="absolute top-2 right-2 bg-stone-900/80 text-white text-[11px] font-mono px-2 py-0.5">
+              <div className="absolute top-2 right-2 bg-stone-900/80 text-white text-[11px] font-mono px-2 py-0.5 z-10">
                 {resultArticle.image.fileSize} · WebP
+              </div>
+              {/* Hover Image Description Overlay */}
+              <div
+                role="tooltip"
+                aria-label="Image Description"
+                className="absolute inset-x-0 bottom-0 p-3.5 bg-gradient-to-t from-stone-950 via-stone-950/85 to-transparent text-white opacity-0 group-hover/quizimg:opacity-100 transition-opacity duration-300 pointer-events-none z-10 text-left"
+              >
+                <div className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-fuchsia-400 font-semibold mb-1">
+                  <Info className="w-3 h-3 text-fuchsia-400 shrink-0" />
+                  <span>Image Description</span>
+                  <span className="text-stone-400">·</span>
+                  <span className="text-stone-300 font-normal">{resultArticle.image.dimensions}</span>
+                </div>
+                <p className="text-xs text-stone-100 font-sans leading-snug">
+                  {resultArticle.image.alt}
+                </p>
               </div>
             </div>
 

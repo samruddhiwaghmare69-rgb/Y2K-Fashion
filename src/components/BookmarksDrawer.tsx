@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Bookmark, ArrowRight, Trash2 } from 'lucide-react';
+import { X, Bookmark, ArrowRight, Trash2, Info } from 'lucide-react';
 import { Article } from '../data/articles';
 
 interface BookmarksDrawerProps {
@@ -56,13 +56,27 @@ export const BookmarksDrawer: React.FC<BookmarksDrawerProps> = ({
           ) : (
             bookmarkedArticles.map((article) => (
               <div key={article.id} className="py-4 first:pt-0 last:pb-0 flex gap-3 group">
-                <div className="w-20 h-16 shrink-0 bg-stone-100 overflow-hidden border border-stone-200">
+                <div className="relative w-20 h-16 shrink-0 bg-stone-100 border border-stone-200 group/thumb">
                   <img
                     src={article.image.src}
                     alt={article.image.alt}
+                    title={`Image Description: ${article.image.alt} — ${article.image.caption}`}
+                    data-image-description={article.image.alt}
+                    data-image-caption={article.image.caption}
+                    data-image-specs={`${article.image.fileSize} · ${article.image.format} · ${article.image.dimensions}`}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
+                  {/* Hover description popup card */}
+                  <div className="absolute left-full top-0 ml-2 w-64 p-2.5 bg-stone-950 text-white text-xs rounded shadow-2xl border border-stone-800 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="flex items-center gap-1 text-[10px] font-mono text-fuchsia-400 font-semibold mb-1">
+                      <Info className="w-3 h-3 text-fuchsia-400 shrink-0" />
+                      <span>IMAGE DESCRIPTION</span>
+                    </div>
+                    <p className="text-[11px] text-stone-200 leading-snug">
+                      {article.image.alt}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex-1 min-w-0">

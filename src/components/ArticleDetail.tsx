@@ -353,7 +353,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
         {/* Primary Photographic Centerpiece */}
         <figure className="mb-12 bg-white border border-stone-200 overflow-hidden shadow-xs">
-          <div className="relative aspect-4/3 w-full bg-stone-100">
+          <div className="relative aspect-4/3 w-full bg-stone-100 group/heroimg overflow-hidden">
             {!imageLoaded && (
               <div className="absolute inset-0 bg-stone-200 animate-pulse flex items-center justify-center">
                 <span className="text-xs font-mono text-stone-400">Loading verified visual...</span>
@@ -362,17 +362,38 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             <img
               src={article.image.src}
               alt={article.image.alt}
+              title={`Image Description: ${article.image.alt} — ${article.image.caption}`}
+              data-image-description={article.image.alt}
+              data-image-caption={article.image.caption}
+              data-image-specs={`${article.image.fileSize} · ${article.image.format} · ${article.image.dimensions}`}
               referrerPolicy="no-referrer"
               onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-cover transition-opacity duration-300 ${
+              className={`w-full h-full object-cover transition-all duration-500 group-hover/heroimg:scale-102 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
 
+            {/* Hover Image Description Overlay */}
+            <div
+              role="tooltip"
+              aria-label="Image Description"
+              className="absolute inset-x-0 bottom-0 p-5 pr-36 bg-gradient-to-t from-stone-950 via-stone-950/85 to-transparent text-white opacity-0 group-hover/heroimg:opacity-100 transition-opacity duration-300 pointer-events-none z-10 flex flex-col justify-end"
+            >
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-fuchsia-400 font-semibold mb-1">
+                <Info className="w-3.5 h-3.5 text-fuchsia-400 shrink-0" />
+                <span>Archival Image Description</span>
+                <span className="text-stone-400">·</span>
+                <span className="text-stone-300 font-normal">{article.image.dimensions} ({article.image.format})</span>
+              </div>
+              <p className="text-xs sm:text-sm text-stone-100 leading-relaxed font-sans max-w-2xl">
+                {article.image.alt}
+              </p>
+            </div>
+
             {/* Quick Inspection Affordance */}
             <button
               onClick={() => setShowImageZoom(!showImageZoom)}
-              className="absolute bottom-3 right-3 bg-stone-900/85 hover:bg-stone-900 text-white text-xs px-2.5 py-1.5 rounded flex items-center gap-1.5 backdrop-blur-xs cursor-pointer transition-colors"
+              className="absolute bottom-3 right-3 bg-stone-900/85 hover:bg-stone-900 text-white text-xs px-2.5 py-1.5 rounded flex items-center gap-1.5 backdrop-blur-xs cursor-pointer transition-colors z-20"
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Inspect Asset</span>
